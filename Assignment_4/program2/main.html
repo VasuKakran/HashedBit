@@ -1,0 +1,21 @@
+<script>
+function createDiv(width, height, text) {
+    var div = document.createElement("div");
+    div.style.width = `${width}px`;
+    div.style.height = `${height}px`;
+    div.innerHTML = text;
+    div.style.backgroundColor = "red";
+    
+    const element = document.getElementById("container");
+    element.appendChild(div);
+}
+
+
+Window.createDiv = createDiv;
+</script>
+
+<body onload="createDiv(100,100, 'hello')">
+    <div id="container">
+
+    </div>
+</body>

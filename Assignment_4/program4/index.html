@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class='text-here' id='text-container'>This is some example text</div>
+
+
+    <input type="text" id="colorbox">
+
+    <button id="colorchange" onclick="changeColor()">Change Colour</button>
+
+    <br><br>
+
+    <input type="range" id="fontsize" min="10" max="100" value="55" oninput="changeSize(this.value)">
+    <br><br>
+
+
+    <button id="italic" class="stylebt" onclick="changeStyle(this.id)">Italics</button>
+    <button id="underline" class="stylebt" onclick="changeStyle(this.id)">Underline</button>
+    <button id="bold" class="stylebt" onclick="changeStyle(this.id)">Bold</button>
+
+    <br><br>
+
+
+    <select id="list" onchange="changeFont(this.value)">
+        <option value="serif">Serif</option>
+        <option value="sans-serif">Sans-Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="fantasy">Fantasy</option>
+    </select>
+
+
+    <br><br>
+
+    <button id="getstyle" onclick="cssProp()">Get CSS</button>
+
+    <br><br>
+    <p id="css-props"></p>
+
+    <script>
+        const example = document.getElementById("text-container");
+
+        function cssProp() {
+            var styles = window.getComputedStyle(example);
+            var text = '';
+
+            for(var i = 0; i < styles.length; ++i){
+                text += styles[i] + ':' + styles.getPropertyValue(styles[i]) + "; "; 
+            }
+
+            document.getElementById("css-props").textContent = text;
+        }
+
+        function changeColor() {
+            const input = document.getElementById("colorbox");
+            example.style.color = input.value;
+        }
+
+        function changeSize(value) {
+            example.style.fontSize = `${value}px`;
+        }
+
+        function changeStyle(id) {
+            if (id === "italic") {
+                if (example.style.fontStyle == 'italic')
+                    example.style.fontStyle = 'normal';
+                else
+                    example.style.fontStyle = 'italic';
+            }
+            else if (id === "underline") {
+                if (example.style.textDecoration == 'underline')
+                    example.style.textDecoration = 'none';
+                else
+                    example.style.textDecoration = 'underline';
+            }
+            else if (id === "bold") {
+                if (example.style.fontWeight == 'bold')
+                    example.style.fontWeight = 'normal';
+                else
+                    example.style.fontWeight = 'bold';
+            }
+        }
+
+        function changeFont(value){
+            example.style.fontFamily = value;
+        }
+    </script>
+</body>
+
+</html>

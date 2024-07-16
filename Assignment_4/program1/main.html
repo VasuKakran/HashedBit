@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="main.css">
+
+<script>
+    function swapTheme() {
+  const element1 = document.getElementById("app");
+  if(element1.className == "day")
+     element1.className = "night";
+  else
+     element1.className = "day";
+     
+  const element2 = document.getElementById("swap");
+  if(element2.className == "button_day")
+     element2.className = "button_night";
+  else
+     element2.className = "button_day";
+  
+}
+</script>
+<div id="app" class="day">
+    <p>I am a HashedBit student, ready to become an awesome full stack developer</p>
+    <button onclick="swapTheme()" id="swap" class="button_day">Toggle theme</button>
+</div>
