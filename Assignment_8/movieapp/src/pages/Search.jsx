@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+require('dotenv').config();
 
 function Search() {
     const { state } = useLocation();
@@ -10,7 +11,8 @@ function Search() {
     var data;
     useEffect(() => {
         async function getData() {
-            const url = "https://api.themoviedb.org/3/search/movie?query=" + name.myInput + "&api_key=48611c2270e1b97cab759d6cf0adb035"
+            const apikey= process.env.API_KEY;
+            const url = "https://api.themoviedb.org/3/search/movie?query=" + name.myInput + apikey;
             const res = await fetch(url);
             data = await res.json();
             const element = document.getElementById("search");
